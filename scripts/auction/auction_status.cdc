@@ -1,7 +1,7 @@
 // auction_status.cdc
 // Gets auction status: nil = not started, true = ongoing, false = ended
 
-import AuctionHouse  from 0x045a1763c93006ca
+import AuctionHouse  from 0xc748d23a9a804eb0
 
 pub fun main(auction: Address, auctionID: UInt64): Bool? {    
     let auctionHouse = getAccount(auction)

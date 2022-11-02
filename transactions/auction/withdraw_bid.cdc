@@ -3,7 +3,7 @@
 
 import FungibleToken from 0xf233dcee88fe0abe
 import FUSD          from 0x3c5959b568896393
-import AuctionHouse  from 0x045a1763c93006ca
+import AuctionHouse  from 0xc748d23a9a804eb0
 
 transaction(auction: Address, aid: UInt64)
 {

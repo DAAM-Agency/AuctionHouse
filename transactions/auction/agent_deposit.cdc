@@ -4,7 +4,7 @@
 import NonFungibleToken from 0x1d7e57aa55817448
 import DAAM             from 0x7db4d10c78bad30a
 import FUSD             from 0x3c5959b568896393
-import AuctionHouse     from 0x045a1763c93006ca
+import AuctionHouse     from 0xc748d23a9a804eb0
 
 transaction(creator: Address, mid: UInt64, start: UFix64, length: UFix64, isExtended: Bool, extendedTime: UFix64, /*vault: @FungibleToken.Vault,*/
     incrementByPrice: Bool, incrementAmount: UFix64, startingBid: UFix64?, reserve: UFix64, buyNow: UFix64, reprintSeries: UInt64?)

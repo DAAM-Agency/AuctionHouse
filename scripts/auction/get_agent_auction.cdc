@@ -1,7 +1,7 @@
 // get_agent_auctions.cdc
 // Return all auctions in Auction Wallet. Identified by AuctionIDs
 
-import AuctionHouse  from 0x045a1763c93006ca
+import AuctionHouse  from 0xc748d23a9a804eb0
 
 pub fun main(auction: Address): [UInt64] {    
     let auctionHouse = getAccount(auction)

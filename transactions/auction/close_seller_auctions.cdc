@@ -1,7 +1,7 @@
 // close_auctions.cdc
 // Settles all auctions that have ended. Including Items, returning funds, etc.
 
-import AuctionHouse from 0x045a1763c93006ca
+import AuctionHouse from 0xc748d23a9a804eb0
 
 transaction(auction: Address) {
     let auctionHouse : &AuctionHouse.AuctionWallet{AuctionHouse.AuctionWalletPublic}

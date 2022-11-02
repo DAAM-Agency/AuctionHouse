@@ -3,7 +3,7 @@
 
 import MetadataViews from 0x1d7e57aa55817448
 import DAAM          from 0x7db4d10c78bad30a
-import AuctionHouse  from 0x045a1763c93006ca
+import AuctionHouse  from 0xc748d23a9a804eb0
 
 pub struct DirectHistory {
     pub let mid : UInt64

@@ -1096,9 +1096,6 @@ pub struct AuctionHolder {
         self.auctionCounter  = 0
         self.auctionStoragePath = /storage/DAAM_Auction
         self.auctionPublicPath  = /public/DAAM_Auction
-        // init accepted cryptos
-        self.crypto = {"A.192440c99cb17282.FUSD.Vault" : /public/fusdReceiver}
-        self.crypto .insert(key: "A.ec4809cd812aee0a.TokenA.Vault", /public/tokenAReceiver)
     }
 }
  

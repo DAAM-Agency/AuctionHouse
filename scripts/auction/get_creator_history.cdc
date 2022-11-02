@@ -2,7 +2,7 @@
 // Return all (nil) or spcific creator history
 
 import DAAM         from 0x7db4d10c78bad30a
-import AuctionHouse from 0x045a1763c93006ca
+import AuctionHouse from 0xc748d23a9a804eb0
 
 pub fun main(creator: Address): {UInt64 : {UInt64: AuctionHouse.SaleHistory}} { // {MID : {TokenID:SaleHistory} }
     let creatorMIDs = DAAM.getCreatorMIDs(creator: creator)

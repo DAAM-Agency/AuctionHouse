@@ -2,7 +2,7 @@
 // Return all auctions that match the argument status
 // status meaning: nil = not started, true = on-going auction, false = auction ended
 
-import AuctionHouse from 0x045a1763c93006ca
+import AuctionHouse from 0xc748d23a9a804eb0
 
 pub fun main(status: Bool?): {Address: [UInt64]}  {    
     let currentAuctions = AuctionHouse.getCurrentAuctions() // Get auctioneers and AIDs {Address : [AID]}
