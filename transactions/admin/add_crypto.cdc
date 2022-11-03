@@ -8,10 +8,14 @@ import AuctionHouse  from 0xc748d23a9a804eb0
 
 transaction()
 {
+    //let crypto: &FungibleToken.Vault
+    let path  : PublicPath
     let admin : &DAAM.Admin
 
     prepare(admin: AuthAccount) {
        
+        //self.crypto = crypto
+        self.path   = /public/fusdReceiver
         self.admin  = admin.borrow<&DAAM.Admin>(from: DAAM.adminStoragePath)!
     }
 
@@ -21,4 +25,3 @@ transaction()
         destroy vault
     }
 }
- 
