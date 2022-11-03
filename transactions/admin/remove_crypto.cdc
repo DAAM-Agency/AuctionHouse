@@ -1,5 +1,5 @@
-// add_fee.cdc
-// Settles all auctions that have ended. Including Items, returning funds, etc.
+// remove_crypto.cdc
+// Removes Crypto selection from AuctionHouse
 
 import DAAM         from 0x7db4d10c78bad30a
 import AuctionHouse from 0xc748d23a9a804eb0
