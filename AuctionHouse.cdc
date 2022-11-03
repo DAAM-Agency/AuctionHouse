@@ -1091,6 +1091,7 @@ pub struct AuctionHolder {
     }
 
     init() {
+        self.crypto          = {}
         self.metadataGen     = {}
         self.currentAuctions = {}
         self.fee             = {}
