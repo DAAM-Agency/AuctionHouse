@@ -831,10 +831,9 @@ pub struct AuctionHolder {
             let fee         = self.auctionVault.balance - price   // Get fee amount
             let creatorRoyalties = self.convertTo100Percent() // get Royalty data
             let daamRoyalty = AuctionHouse.getAgencyFirstSale(mid: self.mid)
+            let inHouse = 0.5 // Main setting here
             
             if self.auctionNFT?.metadata!.creatorInfo.agent == DAAM.company.receiver.address {
-                let inHouse = 0.5 // Main setting here
-                
                 // Below changes are calculated from above settings
                 let agency = 1.0 - inHouse
                 let nonCreatorAmont = (price * daamRoyalty) + fee
@@ -852,8 +851,11 @@ pub struct AuctionHolder {
                     (MetadataViews.getRoyaltyReceiverPublicPath()!)
                     .borrow()! // get Seller FUSD Wallet Capability
                 let agentCut <-! self.auctionVault.withdraw(amount: agentAmount) // Calcuate actual amount
-                agent.deposit(from: <-agentCut ) // deposit amount                
-                self.payRoyalty(price: fee, royalties: DAAM.agency.getRoyalties() ) // Fee Payment
+                let feeInHouseAmount = fee * inHouse
+                let feeAgencyAmount = fee - feeInHouseAmount
+                agent.deposit(from: <-agentCut ) // deposit amount  
+                self.payRoyalty(price: feeInHouseAmount, royalties: [DAAM.company] ) // Fee Payment
+                self.payRoyalty(price: feeAgencyAmount, royalties: DAAM.agency.getRoyalties() ) // Fee Paymen
                 self.payRoyalty(price: self.auctionVault.balance, royalties: creatorRoyalties) // Royalty
             }           
             assert(self.auctionVault.balance==0.0, message: self.auctionVault.balance.toString().concat(" fee: ").concat(fee.toString()) )
