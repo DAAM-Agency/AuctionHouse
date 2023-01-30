@@ -120,6 +120,7 @@ pub struct AuctionHolder {
         pub fun getAgentAuctions(): [UInt64]                 // Returns the Auctions deposited by Agent 
         pub fun item(_ id: UInt64): &Auction{AuctionPublic}? // item(Token ID) will return the apporiate auction.
         pub fun closeAuctions()                              // Close all finilise auctions
+        pub fun closeAuction(_ auctionID: UInt64)            // Close auction by AID
 
         pub fun deposit(agent: &DAAM.Admin{DAAM.Agent}, metadataGenerator: Capability<&DAAM.MetadataGenerator{DAAM.MetadataGeneratorMint}>, mid: UInt64, start: UFix64,
             length: UFix64, isExtended: Bool, extendedTime: UFix64, vault: @FungibleToken.Vault, incrementByPrice: Bool, incrementAmount: UFix64,
@@ -259,6 +260,28 @@ pub struct AuctionHolder {
                 }
             }
         }
+        
+        pub fun closeAuction(_ auctionID: UInt64)
+        {
+            pre { self.currentAuctions.containsKey(auctionID) : "AID is not in your Wallet." }
+            let current_status = self.currentAuctions[auctionID]?.updateStatus() // status may have been changed in verifyReservePrive() called by seriesMinter()
+            assert(current_status==false, message: "Auction has not ended.");
+                
+            log("Closing Token ID: ")
+            if self.currentAuctions[auctionID]?.auctionNFT != nil || self.currentAuctions[auctionID]?.auctionMetadata != nil { // Winner has not yet collected
+                self.currentAuctions[auctionID]?.verifyReservePrice()! // Winner has not claimed their item. Verify they have meet the reserve price?
+            }
+
+            if self.currentAuctions[auctionID]?.status == true { // Series Minter is minting another Metadata to NFT. Auction Restarting.
+                return
+            }  
+
+            self.removeAuction(auctionID)
+
+            log("Auction Closed: ".concat(auctionID.toString()) )                    
+            emit AuctionClosed(auctionID: auctionID)
+        }
+
 
         priv fun removeAuction(_ auctionID: UInt64) {
             let auction <- self.currentAuctions.remove(key:auctionID)!   // No Series minting or last mint
